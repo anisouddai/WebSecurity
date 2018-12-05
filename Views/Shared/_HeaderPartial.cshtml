@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — SafetyMeasure</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    
+    <environment names="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/site.css" asp-append-version="true" />
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        
+
+    </environment>
+
+    <environment names="Staging,Production">
+        <link rel="stylesheet" type="text/css" href="~/css/site.css" asp-append-version="true" />
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+    </environment>
+</head>

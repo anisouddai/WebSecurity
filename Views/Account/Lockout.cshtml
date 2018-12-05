@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Locked out";
+}
+
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">Le compte a ete verouiller, veuillez reessayer plutard</p>
+    <div class="form-group">
+        <p>
+            <a asp-action="ForgotPassword">Contactez l'administrateur pour changer votre mot de passe</a>
+        </p>
+    </div>
+</header>

@@ -1,0 +1,27 @@
+@import "_variables.scss";
+
+/**
+ * SafetyMeasure App Custom Navigation UI Components. 
+ * Based on MDL Layout: https://getmdl.io/components/index.html#layout-section
+ */
+
+.mdl-layout__header {
+    background-color: $bla-accent;
+    color: black;
+    
+    .mdl-navigation__link {
+        color: black;
+        transition: all 0.3s;
+    }
+    
+    .mdl-navigation__link:hover {
+        color: #ec2f5e;
+        font-size: 18px;
+        
+    }
+    
+    .mdl-layout__drawer-button {
+        color: black;
+    }
+}
+

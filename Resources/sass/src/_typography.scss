@@ -1,0 +1,22 @@
+@import "_variables.scss";
+
+/**
+ * Book Lending App Custom Typography Styles. 
+ * Based on MDL Styles: https://getmdl.io/styles/index.html
+ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 28px;
+}

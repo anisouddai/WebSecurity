@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model LoginViewModel
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @Html.Partial("/Views/Shared/_ComingSoonPartial.cshtml")
+}
+else
+{
+    <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone">
+         <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+             <div asp-validation-summary="All" class="text-danger"></div>
+             <div class="input-field-container">
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                     <input class="mdl-textfield__input" asp-for="Email"/>
+                     <label class="mdl-textfield__label" asp-for="Email">@Html.DisplayNameFor(m => m.Email)</label>
+                 </div>
+                 <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.Email)</div>
+
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                     <input class="mdl-textfield__input" asp-for="Password"/>
+                     <label class="mdl-textfield__label" asp-for="Password">@Html.DisplayNameFor(m => m.Password)</label>
+                 </div>
+                 <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.Password)</div>
+            
+                 <div id="login-footer">
+                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+Connexion
+                     </button>
+                     <a asp-controller="Account" asp-action="Register" id="sign-in">Vous n'avez pas de compte? inscrivez-vous</a>
+                     <a asp-action="ForgotPassword" id="sign-in">Mot de passe oublié?</a>
+                 </div> 
+             </div>
+                   
+            </form>
+    </div>
+</div>
+}
+
+
+

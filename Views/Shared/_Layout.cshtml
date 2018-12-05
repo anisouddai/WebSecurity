@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@Html.Partial("/Views/Shared/_HeaderPartial.cshtml")
+
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    @Html.Partial("/Views/Shared/_NavPartial.cshtml")
+
+    <main class="mdl-layout__content">
+        @RenderBody()
+    </main>
+</div>
+
+@RenderSection("Scripts", required: false)
+</body>

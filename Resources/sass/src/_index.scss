@@ -1,0 +1,40 @@
+@import "_variables.scss";
+
+.mdl-textfield--floating-label{
+    color: #fff;
+}
+
+#connexion-header {
+    padding-top: 10%;
+}
+
+.input-field-container {
+    display: block;
+    align-self: center;
+    padding-top: 15%;
+}
+
+.index-tab-bar {
+    a {
+        margin: 0 15%;
+    }
+}
+
+#register-panel {
+    margin-top: 15px;
+    text-align: center;
+    
+    .mdl-card {
+        width: auto;
+        
+        .mdl-card__title {
+            font-style: oblique;
+            font-weight: bold;
+        }
+    }
+    #register-admin-btn {
+        display: grid;
+        margin-top: 2%;
+    }
+}
+

@@ -1,0 +1,34 @@
+@import "_variables.scss";
+
+/**
+ * SafetyMesure App General UI Components. 
+ */
+.mdl-layout__container { 
+  background-color: #f6f9ff; 
+}
+
+.coming-soon-wrapper {
+  width: 100%;
+}
+
+.mdl-center,
+#role-container,
+#login-container{
+  margin: auto;
+  width: 50%;
+
+  .mdl-button--accent {
+    background-color: #6200FF !important;
+  }
+}
+
+#role-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+#content-wrapper {
+  .mdl-button {
+    color: #6200FF;
+  }
+}

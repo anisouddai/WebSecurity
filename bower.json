@@ -1,0 +1,28 @@
+{
+  "name": "WebSecurity",
+  "homepage": "https://github.com/Jayba2401/WebSecurity",
+  "authors": [
+    "Anis Ouddai"
+  ],
+  "description": "Laboratoire de 619",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "wwwroot/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-validation-unobtrusive": "3.2.6",
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.7",
+    "font-awesome": "fontawesome#^4.6.3",
+    "bootstrap": "3.3.7",
+    "mdl-select-component": "mdl-selectField#^0.0.6",
+    "normalize-css": "^4.2.0",
+    "slick-carousel": "^1.6.0"
+  }
+}

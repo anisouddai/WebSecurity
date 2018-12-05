@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WebSecurity.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@model ApplicationUser
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="mdl-grid">
+    </div>
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop">
+            <h1>Bonjour, @Model.FirstName!</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="mdl-grid" id="content-wrapper">
+
+        @if (User.IsInRole("Administrator"))
+        {
+            <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--2-offset-desktop">
+                <h3>Journal d'entrées</h3>
+                <p><a class="mdl-button mdl-js-button mdl-button--accent" asp-controller="Manage" asp-action="JournalEntries"><i class="fa fa-chevron-circle-right fa-fw"></i> Afficher le journal d'entrées des clients</a></p>
+            </div>
+        }
+        
+        @if (User.IsInRole("ResidentialCustomerAgent") || User.IsInRole("BusinessCustomerAgent") || User.IsInRole("Administrator"))
+        {
+            <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--2-offset-desktop">
+                <h3>Clients</h3>
+                <p><a class="mdl-button mdl-js-button mdl-button--accent" asp-controller="Agent" asp-action="Index"><i class="fa fa-chevron-circle-right fa-fw"></i> Consulter la liste des clients</a></p>
+            </div>
+        }
+        
+
+
+        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--2-offset-desktop">
+            <h3>Changez votre mot de passe</h3>
+            <p><a class="mdl-button mdl-js-button mdl-button--accent" asp-controller="Manage" asp-action="ChangePassword"><i class="fa fa-chevron-circle-right fa-fw"></i> Créez et changez de mot de passe</a></p>
+        </div>
+
+    </div>
+}

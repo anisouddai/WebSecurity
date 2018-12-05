@@ -1,0 +1,36 @@
+﻿@using WebSecurity.Models.ManageViewModels
+@model WebSecurity.Models.ManageViewModels.GenerateRecoveryCodesViewModel
+@{
+    ViewData["Title"] = "Codes de récupération";
+    ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
+}
+
+<div class="mdl-grid">
+<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-cell--4-col-phone">
+    
+    <h4>@ViewData["Title"]</h4>
+    <div class="alert alert-warning" role="alert">
+        <p>
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            <strong>Veuillez précieusement conserver ces codes.</strong>
+        </p>
+        <p style="color: red">
+            Si vous égarez votre appareil et ne disporez plus de ces codes de recouvrement, vous allez perdre tout accès à votre compte.
+        </p>
+    </div>
+    
+    <ul class="demo-list-icon mdl-list">
+        @for (var row = 0; row < Model.RecoveryCodes.Count(); row += 2)
+        {
+            <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-icon">lock</i>
+                    <code>@Model.RecoveryCodes[row]</code><text>&nbsp;</text><code>@Model.RecoveryCodes[row + 1]</code><br/>
+        
+                </span>
+            </li>
+        }
+        
+    </ul>
+</div>
+</div>

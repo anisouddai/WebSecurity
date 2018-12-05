@@ -1,0 +1,29 @@
+// Normalize the styles
+@import "src/_normalize.scss";
+
+// Import mixins
+@import "src/_mixins.scss";
+
+// Import dependencies (Material Design, Font Awesome, etc.)
+@import "./Resources/lib/font-awesome/scss/font-awesome.scss";
+@import "./Resources/lib/material-design-lite/src/material-design-lite.scss";
+@import "./Resources/lib/material-design-lite/src/selectfield/selectfield.scss";
+@import "./Resources/lib/slick-carousel/slick/slick.scss"; 
+//@import "./Resources/lib/mdl-selectfield/src/selectfield/selectfield.scss";
+//@import "./Resources/lib/mdl-select-component/src/selectfield/selectfield.scss";
+
+// Import SCSS files
+
+@import "src/_index.scss";
+@import "src/_profile.scss";
+@import "src/_alerts.scss";
+@import "src/_buttons.scss";
+@import "src/_cards.scss";
+@import "src/_general.scss";
+@import "src/_hero.scss";
+@import "src/_login.scss";
+@import "src/_nav.scss";
+@import "src/_registration.scss";
+@import "src/_table.scss";
+@import "src/_typography.scss";
+@import "src/_variables.scss";

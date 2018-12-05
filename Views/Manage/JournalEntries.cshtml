@@ -1,0 +1,42 @@
+﻿@using WebSecurity.Models.ManageViewModels
+@model WebSecurity.Models.ManageViewModels.JournalEntriesViewModel
+@{
+    ViewData["Title"] = "Journal d'entrées";
+}
+
+<form id="registerForm">
+
+    <div class="mdl-grid">
+
+        <div id="login-container" class="mdl-center mdl-cell mdl-cell--stretch mdl-cell--4-col-desktop mdl-cell--2-offset-desktop mdl-cell--4-col-tablet mdl-cell-4-col-phone" style="padding-right: 25px">
+
+            <h3>@ViewData["Title"]</h3>
+            <table id="table" class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--4dp">
+                <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Utilisateur</th>
+                    <th class="mdl-data-table__cell--non-numeric">Événement</th>
+                    <th class="mdl-data-table__cell--non-numeric">Temps</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.EntryList)
+                {
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric" data-title="Utilisateur">@item.UserId</td>
+                        <td class="mdl-data-table__cell--non-numeric" data-title="Événement">@item.Event</td>
+                        <td class="mdl-data-table__cell--non-numeric" data-title="Temps">@item.Time</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <!-- Table starts here -->
+
+    </div>
+
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

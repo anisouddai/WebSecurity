@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc
+@using WebSecurity.Helpers
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">
+                <img style="height: 55px" src="~/images/logo1.png"/>
+            </span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" asp-area="" asp-controller="Manage" asp-action="Index">@User.Identity.Name</a>
+                <a class="mdl-navigation__link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+                <a class="mdl-navigation__link" asp-controller="Account" asp-action="LogOut">Deconnexion</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+            <img style="width: 65%; margin-top:8px" src="~/images/logo1.png"/>
+        </span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="mdl-navigation__link" asp-controller="Manage" asp-action="SecurityParams">Paramètres de sécurité</a>
+            <a class="mdl-navigation__link" asp-controller="Manage" asp-action="JournalEntries">Journal d'événements</a>
+            <a class="mdl-navigation__link" asp-controller="Manage" asp-action="ChangePassword">Changer le mot de passe</a>
+            <a class="mdl-navigation__link" asp-controller="Account" asp-action="LogOut">Deconnexion</a>
+        </nav>
+    </div>
+}
+else
+{
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">
+                <img style="height: 55px" src="~/images/logo1.png"/>
+            </span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" asp-controller="Home" asp-action="Index">Accueil</a>
+                <a class="mdl-navigation__link" asp-controller="Account" asp-action="Login">Connexion</a>
+                <a class="mdl-navigation__link" asp-controller="Account" asp-action="Register">Inscription</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+            <img style="width: 65%; margin-top:8px" src="~/images/logo1.png"/>
+        </span>
+        <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" asp-controller="Account" asp-action="Login">Connexion</a>
+        <a class="mdl-navigation__link" asp-controller="Account" asp-action="Register">Inscription</a>
+        </nav>
+    </div>
+}

@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using WebSecurity.Models.ManageViewModels
+@model WebSecurity.Models.ManageViewModels.IndexViewModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData.AddActivePage(ManageNavPages.Index);
+}
+
+@Html.Partial("_StatusMessage", Model.StatusMessage)
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--stretch mdl-cell--4-col-desktop mdl-cell--2-offset-desktop mdl-cell--4-col-tablet mdl-cell-4-col-phone">
+        <form method="post" id="registerForm">
+            
+            
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" asp-for="Username"></label>
+                <input class="mdl-textfield__input" asp-for="Username" class="form-control" disabled/>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                @if (Model.IsEmailConfirmed)
+                {
+                    <div class="input-group">
+                        <input class="mdl-textfield__input" asp-for="Email" class="form-control"/>
+                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+                    </div>
+                }
+                else
+                {
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <label class="mdl-textfield__label" asp-for="Email"></label>
+                        <input class="mdl-textfield__input" asp-for="Email" class="form-control" disabled/>
+                    </div>
+                    
+                    <div style="margin-top: 35px">
+                        <button asp-action="SendVerificationEmail" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Envoyer confirmation</button>
+                    </div>
+                    
+                }
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" asp-for="PhoneNumber"></label>
+                <input class="mdl-textfield__input" asp-for="PhoneNumber" class="form-control"/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Sauvegarder</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

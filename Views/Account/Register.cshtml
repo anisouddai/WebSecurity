@@ -1,0 +1,62 @@
+﻿@using System.Linq
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<form asp-controller="Account" asp-action="Register" method="post" id="registerForm">
+    
+    @Html.AntiForgeryToken()
+    <div class="mdl-grid">
+        <div id="login-container" class="mdl-center mdl-cell mdl-cell--stretch mdl-cell--4-col-desktop mdl-cell--2-offset-desktop mdl-cell--4-col-tablet mdl-cell-4-col-phone" style="padding-right: 25px">
+            <h3>Ces informations serviront à vous identifier pour acéder à votre compte.</h3>
+            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" asp-for="FirstName" id="firstname_input"/>
+                <label class="mdl-textfield__label" for="FirstName">@Html.DisplayNameFor(m => m.FirstName)</label>
+            </div>
+            <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.FirstName)</div>
+            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" asp-for="LastName" id="lastname_input"/>
+                <label class="mdl-textfield__label" for="LastName">@Html.DisplayNameFor(m => m.LastName)</label>
+            </div>
+            <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.LastName)</div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" asp-for="Email" id="email_input"/>
+                <label class="mdl-textfield__label" asp-for="Email">@Html.DisplayNameFor(m => m.Email)</label>
+            </div>
+            
+            <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.Email)</div>
+            
+            <h3></h3>
+            <p>Votre mot de passe doit contenir au minimum six (6) caractères, dont au moins un chiffre et un caractère non alphanumérique.</p>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" asp-for="Password" />
+                <label class="mdl-textfield__label"  asp-for="Password">@Html.DisplayNameFor(m => m.Password)</label>
+            </div>
+            <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.Password)</div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" asp-for="ConfirmPassword" />
+                <label class="mdl-textfield__label"  asp-for="ConfirmPassword">@Html.DisplayNameFor(m => m.ConfirmPassword)</label>
+            </div>
+            <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.ConfirmPassword)</div>
+            
+            <br/>
+            <div class="bla-registration-actions">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Suivant
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

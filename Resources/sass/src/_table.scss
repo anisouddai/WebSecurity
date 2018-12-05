@@ -1,0 +1,15 @@
+@import "_variables.scss";
+
+/**
+ * Safety Measure Custom Table UI Components. 
+ * Based on MDL Tables: https://getmdl.io/components/index.html#tables-section
+ */
+
+.mdl-data-table {
+    width: 100%;
+    white-space: normal;
+}
+
+table .mdl-radio {
+    bottom: 15px;
+}

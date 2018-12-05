@@ -1,0 +1,48 @@
+﻿@using System.Linq
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model RegisterRoleViewModel
+@{
+    ViewData["Title"] = "RegisterRole";
+}
+
+<form asp-controller="Account" asp-action="RegisterRole" method="post" id="registerForme">
+    
+    @Html.AntiForgeryToken()
+    <div class="mdl-grid">
+        <input asp-for="FirstName" type="hidden" />
+        <input asp-for="LastName" type="hidden" />
+        <input asp-for="Email" type="hidden" />
+        <div id="role-container" class="mdl-center mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell-6-col-phone" style="padding-left: 25px">
+            <h3>Veuillez faire un choix du rôle qui vous est approprié. Chaque rôle dispose de permissions et d'accès différents.</h3>
+
+            @foreach (var role in Model.RolesList)
+            {
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="@role.Text">
+                    <input type="radio" id="@role.Text" asp-for="SelectedRole" class="mdl-radio__button"
+                           name="SelectedRole" value="@role.Value">
+                    <span class="mdl-radio__label">@role.Text</span>
+                    <input type="hidden" asp-for="@role.Value">
+                </label>
+                <hr/>
+            }
+
+            <div class="bla-inline-alert danger">@Html.ValidationMessageFor(m => m.SelectedRole)</div>
+
+            <br/>
+            <div class="bla-registration-actions" id="role-actions">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                   asp-controller="Account" asp-action="Register">Retour</a>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Créer le compte
+                </button>
+            </div>
+        </div>
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

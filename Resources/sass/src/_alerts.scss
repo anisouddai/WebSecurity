@@ -1,0 +1,26 @@
+@import "_variables.scss";
+
+/**
+ * SafetyMeasure App Custom Alerts UI Components. 
+ */
+
+.bla-alert {
+    padding: 0px;
+    margin: 0px;
+
+    &.danger {
+        color: rgba(252, 68, 130, 1.00);
+        text-align: left;
+    }
+}
+
+.bla-inline-alert {
+    padding: 0px;
+    margin: 0px;
+    margin-top: -15px;
+
+    &.danger {
+        color: rgba(252, 68, 130, 1.00);
+        text-align: left;
+    }
+}

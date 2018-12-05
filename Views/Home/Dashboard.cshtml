@@ -1,0 +1,11 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{ 
+    ViewData["Title"] = "Accueil"; 
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @await Component.InvokeAsync("UserDashboard")
+}

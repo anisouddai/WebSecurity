@@ -1,0 +1,96 @@
+@import "_variables.scss";
+
+/**
+ * SafetyMesure Custom Cards UI Components. 
+ * Based on MDL Cards: https://getmdl.io/components/index.html#cards-section
+ */
+
+// General cards
+.bla-card {
+    height: auto;
+    min-height: auto;
+    //color: #f9a825;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    color: rgba(255, 255, 255, 0.90);
+    transition: background-image 1s linear;
+}
+
+.bla-actions {
+    text-align: center;
+}
+
+.bla-card-actions {
+    margin-top: 20px;
+}
+
+.mdl-card__supporting-text {
+    width: auto;
+}
+
+.mdl-textfield {
+    width: 100%;
+}
+
+// Wide cards
+.bla-card-wide {
+
+    &.mdl-card {
+        width: 100%;
+        margin: 50px auto 0px auto;
+    }
+
+    &>.mdl-card__title {
+        &.bla-title-bar {
+            height: auto;
+        }
+    }
+
+}
+
+// Square cards
+.bla-card-square {
+
+    &.mdl-card {
+        width: 100%;
+        height: 95vw;
+        @media (min-width: $screen-sm) {
+            height: $card-square-width;
+        }
+    }
+
+    &>.mdl-card__title {
+        color: rgba(255, 255, 255, 1.0);
+
+        &.bla-card-new-user {
+            background: linear-gradient(
+                    rgba(255, 255, 255, 0), 
+                    rgba(0, 0, 0, 0.75)
+                ), url('/images/card-new-account.jpg') center / cover #46B6AC;
+        }
+
+        &.bla-card-existing-user {
+            background: linear-gradient(
+                    rgba(255, 255, 255, 0), 
+                    rgba(0, 0, 0, 0.75)
+                ), url('/images/card-existing-users.jpg') center / cover #46B6AC;
+        }
+
+        &.bla-card-student {
+            background: linear-gradient(
+                    rgba(255, 255, 255, 0), 
+                    rgba(0, 0, 0, 0.75)
+                ), #46B6AC;
+        }
+
+        &.bla-card-manager {
+            background: linear-gradient(
+                    rgba(255, 255, 255, 0), 
+                    rgba(0, 0, 0, 0.75)
+                ), #46B6AC;
+        }
+
+    }
+
+}

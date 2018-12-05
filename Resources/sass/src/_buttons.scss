@@ -1,0 +1,22 @@
+@import "_variables.scss";
+
+/**
+ * Book Lending App Custom Cards UI Components. 
+ * Based on MDL Buttons: https://getmdl.io/components/index.html#buttons-section
+ */
+
+.bla-add-fab-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: auto;
+    width: auto;
+}
+
+.bla-enter-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: auto;
+    width: auto;
+}
