@@ -471,7 +471,7 @@ namespace WebSecurity.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SecurityParams(SecurityParamsViewModel model)
+        public async Task<IActionResult> SecurityRestriction(SecurityRestrictionViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -500,21 +500,21 @@ namespace WebSecurity.Controllers
                 ModelState.AddModelError(string.Empty, "Saved");
             }
 
-            return View(nameof(SecurityParams), model);
+            return View(nameof(SecurityRestriction), model);
         }
 
         [Authorize(Roles = "Administrator")]
-        public IActionResult SecurityParams()
+        public IActionResult SecurityRestriction()
         {
             return View();
         }
 
         [Authorize(Roles = "Administrator")]
-        public IActionResult JournalEntries()
+        public IActionResult EntriesRecord()
         {
-            var model = new JournalEntriesViewModel();
+            var model = new EntriesRecordViewModel();
 
-            model.EntryList = _dbContext.JournalEntries.ToList();
+            model.EntriesRecordList = _dbContext.JournalEntries.ToList();
 
             return View(model);
         }

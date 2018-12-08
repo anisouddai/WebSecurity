@@ -17,12 +17,12 @@ namespace WebSecurity.Data
         }
         
         public DbSet<SecurityParams> SecurityParams { get; set; }
-        public DbSet<JournalEntry> JournalEntries { get; set; }
+        public DbSet<EntriesRecord> JournalEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<SecurityParams>().ToTable("SecurityParams");
-            builder.Entity<JournalEntry>().ToTable("JournalEntries");
+            builder.Entity<EntriesRecord>().ToTable("JournalEntries");
 
             base.OnModelCreating(builder);
           

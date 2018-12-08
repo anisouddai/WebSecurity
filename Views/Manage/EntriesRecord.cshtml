@@ -1,5 +1,5 @@
 ﻿@using WebSecurity.Models.ManageViewModels
-@model WebSecurity.Models.ManageViewModels.JournalEntriesViewModel
+@model WebSecurity.Models.ManageViewModels.EntriesRecordViewModel
 @{
     ViewData["Title"] = "Journal d'entrées";
 }
@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var item in Model.EntryList)
+                @foreach (var item in Model.EntriesRecordList)
                 {
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric" data-title="Utilisateur">@item.UserId</td>

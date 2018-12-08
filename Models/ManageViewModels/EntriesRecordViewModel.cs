@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebSecurity.Models.ManageViewModels
 {
-    public class JournalEntriesViewModel
+    public class EntriesRecordViewModel
     {
-        public List<JournalEntry> EntryList { get; set; }
+        public List<EntriesRecord> EntriesRecordList { get; set; }
     }
 }

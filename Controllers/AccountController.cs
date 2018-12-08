@@ -79,7 +79,7 @@ namespace WebSecurity.Controllers
 
                 if (result.Succeeded)
                 {
-                    var journalEntry = new JournalEntry { UserId = user.UserName, Event = "Utilisateur s'est authentifi�", Time = DateTime.Now };
+                    var journalEntry = new EntriesRecord { UserId = user.UserName, Event = "Utilisateur s'est authentifi�", Time = DateTime.Now };
                     _dbContext.JournalEntries.Add(journalEntry);
                     await _dbContext.SaveChangesAsync();
 
@@ -95,7 +95,7 @@ namespace WebSecurity.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    var journalEntry = new JournalEntry { UserId = user.UserName, Event = "Utilisateur a �t� v�rouill�", Time = DateTime.Now };
+                    var journalEntry = new EntriesRecord { UserId = user.UserName, Event = "Utilisateur a �t� v�rouill�", Time = DateTime.Now };
                     _dbContext.JournalEntries.Add(journalEntry);
                     await _dbContext.SaveChangesAsync();
 
@@ -104,7 +104,7 @@ namespace WebSecurity.Controllers
                 }
                 else
                 {
-                    var journalEntry = new JournalEntry { UserId = user.UserName, Event = "Utilisateur a �chou� une tentative de connexion", Time = DateTime.Now };
+                    var journalEntry = new EntriesRecord { UserId = user.UserName, Event = "Utilisateur a �chou� une tentative de connexion", Time = DateTime.Now };
                     _dbContext.JournalEntries.Add(journalEntry);
                     await _dbContext.SaveChangesAsync();
 
@@ -267,7 +267,7 @@ namespace WebSecurity.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var journalEntry = new JournalEntry { UserId = user.UserName, Event = "Utilisateur a crée un compte", Time = DateTime.Now };
+                    var journalEntry = new EntriesRecord { UserId = user.UserName, Event = "Utilisateur a crée un compte", Time = DateTime.Now };
                     _dbContext.JournalEntries.Add(journalEntry);
                     await _dbContext.SaveChangesAsync();
 
@@ -495,7 +495,7 @@ namespace WebSecurity.Controllers
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                var journalEntry = new JournalEntry { UserId = user.UserName, Event = "Utilisateur chang� son mot de passe", Time = DateTime.Now };
+                var journalEntry = new EntriesRecord { UserId = user.UserName, Event = "Utilisateur chang� son mot de passe", Time = DateTime.Now };
                 _dbContext.JournalEntries.Add(journalEntry);
                 await _dbContext.SaveChangesAsync();
 

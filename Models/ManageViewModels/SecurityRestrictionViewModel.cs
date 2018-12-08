@@ -2,7 +2,7 @@
 
 namespace WebSecurity.Models.ManageViewModels
 {
-    public class SecurityParamsViewModel
+    public class SecurityRestrictionViewModel
     {
         [Display(Name = "Tentatives d’authentification maximal")]
         public int NbTentatives { get; set; }

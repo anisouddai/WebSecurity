@@ -15,7 +15,6 @@
         <tr>
             <th class="mdl-data-table__cell--non-numeric">Nom complet</th>
             <th class="mdl-data-table__cell--non-numeric">Sexe</th>
-            <th class="mdl-data-table__cell--non-numeric">Role</th>
             <th class="mdl-data-table__cell--non-numeric">Adresse courriel</th>
             <th class="mdl-data-table__cell--non-numeric">Adresse résidentielle</th>
             <th class="mdl-data-table__cell--non-numeric">Date d'ouverture de compte</th>
@@ -27,9 +26,6 @@
             <tr>
                 <td class="mdl-data-table__cell--non-numeric"><b>@user.FullName</b></td>
                 <td class="mdl-data-table__cell--non-numeric">@user.Gender</td>
-                <td class="mdl-data-table__cell--non-numeric">
-                    @(user.Role.Equals(RolesConstants.BUSINESSCUSTOMER) ? "Client d'affaire" : "Client résidentiel")
-                </td>
                 <td class="mdl-data-table__cell--non-numeric">@user.Email</td>
                 <td class="mdl-data-table__cell--non-numeric">@user.Street, @user.State</td>
                 <td class="mdl-data-table__cell--non-numeric">@user.Registered</td>
