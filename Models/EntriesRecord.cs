@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebSecurity.Models
 {
-    public class JournalEntry : IModel
+    public class EntriesRecord : IModel
     {
         public int Id { get; set; }
         public string UserId { get; set; }
