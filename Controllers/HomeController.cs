@@ -39,62 +39,18 @@ namespace WebSecurity.Controllers
         
         public async Task<IActionResult> Index()
         {
-            // We check if the user's already logged in
+            // On vérifie si l'utilisateur est loggé
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (User != null)
             {
                 RedirectToAction(nameof(Dashboard));
             }
-            /*IActionResult redirectionAction = null;
-            if (user != null)
-            {
-                // the user'll be redirected to a new page based on his role
-                switch(user.Role)
-                {
-                    // customers are redirected to a manage account page
-                    case RolesConstants.RESIDENTIALCUSTOMER:
-                    case RolesConstants.BUSINESSCUSTOMER:
-                        redirectionAction = RedirectToAction(nameof(CustomerHome));
-                        break;
-                    
-                    // agents are redirected to a agent home page (displaying the 
-                    // list of all business/residential users
-                    case RolesConstants.BUSINESSCUSTOMER_AGENT:      
-                    case RolesConstants.RESIDENTIALCUSTOMER_AGENT:
-                        redirectionAction = RedirectToAction(nameof(AgentHome));
-                        break;
-                     
-                    // admins are the shit
-                    case RolesConstants.ADMIN:
-                        redirectionAction = RedirectToAction(nameof(AdminHome));
-                        break;
-                            
-                }
-                return redirectionAction;
-            }*/
+          
             return View();
         }
         
-        /*public IActionResult CustomerHome()
-        {
-            
-            return RedirectToAction(nameof(ManageController.Index),"Manage");
-        }
-        
-        public IActionResult AgentHome()
-        {
-            //todo: to be implemented
-            ViewData["Message"] = "This page doesn't exist yet";
-            return View();
-        }
-        
-        public IActionResult AdminHome()
-        {
-            //todo: to be implemented
-            ViewData["Message"] = "This page doesn't exist yet";
-            return View();
-        }*/
+
         
         public IActionResult Dashboard()
         {
@@ -122,7 +78,7 @@ namespace WebSecurity.Controllers
         
         public IActionResult ComingSoon()
         {
-            // Temp view to display shit
+         
             return View();
         }
     }

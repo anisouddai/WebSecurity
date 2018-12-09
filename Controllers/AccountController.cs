@@ -50,7 +50,7 @@ namespace WebSecurity.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
-            // Clear the existing external cookie to ensure a clean login process
+            
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
@@ -67,14 +67,13 @@ namespace WebSecurity.Controllers
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
 
-                //Delay between each failed login to prevent brute force
+                //Delai entre deux tentatives de loggin pour ralentir le brute force
                 if (user.AccessFailedCount > 0)
                 {
                     await Task.Delay(_dbContext.SecurityParams.Any() ? _dbContext.SecurityParams.FirstOrDefault().FailedLoginDelay * 1000 : 0);
                 }
 
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+               
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
                 if (result.Succeeded)
@@ -118,27 +117,10 @@ namespace WebSecurity.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            
             return View(model);
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
-        {
-            // Ensure the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
-            }
-
-            var model = new LoginWith2faViewModel { RememberMe = rememberMe };
-            ViewData["ReturnUrl"] = returnUrl;
-
-            return View(model);
-        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -182,7 +164,7 @@ namespace WebSecurity.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
         {
-            // Ensure the user has gone through the username & password screen first
+
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
@@ -278,7 +260,7 @@ namespace WebSecurity.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+           
             return View(model);
         }
         
@@ -314,7 +296,7 @@ namespace WebSecurity.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
-            // If we got this far, something failed, redisplay form
+           
             return View(model);
         }
 

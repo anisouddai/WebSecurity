@@ -4,7 +4,7 @@ namespace WebSecurity.Models
 {
     public class ApplicationRole : IdentityRole
     {
-        // defines (slight description) the Role
+        // definie le role
         public string Name { get; set; }
     }
 }

@@ -20,10 +20,10 @@ namespace WebSecurity.Data
         public static async Task Initialize(ApplicationDbContext context,
             RoleManager<IdentityRole> roleManager, ILogger<DbInitializer> logger)
         {
-            // If Roles dbset has entities, we break
+            // si il y a déjà un rôle on s'arrête
             if (context.Roles.Any())
             {
-                return; // DB has been seeded
+                return; 
             }
     
             await CreateDefaultUserRoles(roleManager, logger);
@@ -33,7 +33,7 @@ namespace WebSecurity.Data
         {
             foreach (var role in _rolesList)
             {
-                // we create the role (remove the whitespaces before)
+                // on crée le role
                 await CreateDefaultRole(roleManager, logger, role.Trim().ToString());
             }
         }

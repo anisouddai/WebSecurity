@@ -10,18 +10,18 @@ namespace WebSecurity.Data
     public class DbInitializer
     {
         /***
-         * This method makes sure the DB was previously created
-         * before starting the seeding process
+         On s'assure que la Bdd existe avant de commencer le seeding process
+       
          */
         public static async Task Initialize(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager, ILogger<DbInitializer> logger)
         {
             context.Database.EnsureCreated();
 
-            // If both Roles and User contain entities, we break
-            if (!context.Roles.Any()) // todo: add context.Users.Any())
+            
+            if (!context.Roles.Any()) // 
             {
-                // Initialize the RoleSeeder 
+                // Initialisation du roleSeeder
                 await RolesSeeder.Initialize(context, roleManager, logger);
                 await UsersSeeder.Initialize(context, userManager, logger);
             }

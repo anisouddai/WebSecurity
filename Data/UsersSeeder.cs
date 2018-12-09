@@ -17,14 +17,13 @@ namespace WebSecurity.Data
 {
     public class UsersSeeder
     {
-        // url for a random rest api 
-        // return json of mock user (names, infos, logins, etc.)
+       
         private static readonly String _randomUserAPI_URL = "https://randomuser.me/api/";
         
         public static async Task Initialize(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager, ILogger<DbInitializer> logger)
         {
-            // If Roles dbset has entities, we break
+            // si il y a déjà un rôle on s'arrête
             if (!context.Users.Any())
             {
                 for (int i = 0; i < new Random().Next(15,20); i++)
@@ -32,31 +31,31 @@ namespace WebSecurity.Data
                     await CreatetMockUser(userManager, logger);
                 }
             }
-            return; // DB has been seeded
+            return; 
         }
         
         public static async Task CreatetMockUser(UserManager<ApplicationUser> userManager, ILogger<DbInitializer> logger)
         {
-            // Open a HTTP client
+            // Ouvre un client Http
             HttpClient client = new HttpClient();
 
-            // Make HTTP request and retrieve response
+            // Fait une requête Http et récupère la réponse
             HttpResponseMessage response = await client.GetAsync(new Uri(_randomUserAPI_URL));
 
-            // Obtain JSON response
+            // Récupére la réponse de JSON
             var jsonString = await response.Content.ReadAsStringAsync();
 
             // Deserialize JSON
             var json = JsonConvert.DeserializeObject(jsonString);
             
             
-            // Parse JSON response
+            // Analyse la réponse JSON 
             JObject parsedJson = JObject.Parse(jsonString);
             
             ApplicationUser mockUser = null;
             IList<JToken> results = parsedJson["results"].Children().ToList();
             
-            // Build objects
+            // Construit les objets
             foreach (JToken result in results)
             {
                 IList<JToken> location = result["location"].Children().ToList();
@@ -80,15 +79,14 @@ namespace WebSecurity.Data
                     UserName = ASCIIEncoding(result["email"].ToString())
                 };
                 
-                // we create the mock user and check if succceed or failed.
-                // We add role to user the user is created successfully
-                // We Log the error if it fails.
+                // On crée un utilisateur et on regarde si cela à échoué ou pas
+                //Si c'est un succès on ajoute un role à l'utilisateur
+                // On consigne l'erreur en cas d'échec
                 var identityResult = await userManager.CreateAsync(mockUser, login[1].First.ToString());
                 
                 if (identityResult.Succeeded)
                 {
-                    // add user to role 
-                    // we create a businesscustomor if the iterator pair.
+                   
                     var roleResult = await userManager.AddToRoleAsync(mockUser,mockUser.Role);
                     logger.LogDebug($"Created the user `{mockUser.FullName}` successfully");
                 }
@@ -96,7 +94,7 @@ namespace WebSecurity.Data
                 {
                     var exception = new ApplicationException($"Mock user `{mockUser.FirstName}` cannot be created");
                     logger.LogError(exception, GetIdentiryErrorsInCommaSeperatedList(identityResult));
-                    //throw exception;
+                   
                 }
                 logger.LogInformation($"Create the user `{mockUser.FullName}` for application");
       
@@ -127,16 +125,16 @@ namespace WebSecurity.Data
         public static string ASCIIEncoding(string text)
         {
             Encoding asciiEncoding = Encoding.ASCII;
-            // Array to hold encoded bytes.
+            // Tableau contenant les bytes encodés
             byte[] bytes;
-            // Array to hold decoded characters.
+            // Tableau pour construire les caractère décodé
             char[] chars = new char[50];
-            // Create index for current position of character array.
+            // Crée un index pour le caractère actuel 
             int index = 0;  
             
             bytes = asciiEncoding.GetBytes(text);
             
-            // Decode the bytes to a single character array.
+            // Decode les bytes pour un tableau de caractère
             int count = asciiEncoding.GetCharCount(bytes);
             if (count + index >=  chars.Length)
                 Array.Resize(ref chars, chars.Length + 50);
@@ -145,7 +143,7 @@ namespace WebSecurity.Data
                 bytes.Length, 
                 chars, index);              
             index = index + written;
-            // Instantiate a single string containing the characters.
+           
             string decodedString = new string(chars, 0, index - 1);
             return RemoveDiacritics(decodedString);
         }

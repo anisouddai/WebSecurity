@@ -8,16 +8,16 @@ using Newtonsoft.Json;
 
 namespace WebSecurity.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
+    // Ajoute des deonnées pour l'application utilisateur en mettant à jour les propriétés de la classe ApplicationUser
     public class ApplicationUser : IdentityUser
     {
-        // base constructor
+        // Constructeur
         public ApplicationUser()
             : base()
         {
         }
    
-        // base constructor with parameters
+        // Constructeur paramètré
         public ApplicationUser(string userName, string firstName, string lastName, DateTime birthDay)
             : base(userName)
         {

@@ -41,29 +41,28 @@ namespace WebSecurity.Controllers
         // GET
         public async Task<IActionResult> Index()
         {
-            // We check if the user's already logged in
+            //On vérifie que l'utilisateur soit loggé
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (user != null)
             {
                 List<ApplicationUser> users = new List<ApplicationUser>();
                 String userRole = String.Empty;
-                // If the current user is a businesscustomer_agent, we get all the users
-                // in the db matching to role == businesscustomer
+                // Le préposé aux clients d'affaires peut voir les clients d'affaires 
                 if (user.Role.Equals(RolesConstants.BUSINESSCUSTOMER_AGENT))
                 {
                     userRole = "Clients d'affaire";
                     users = await _userManager.Users.Where(u => u.Role == RolesConstants.BUSINESSCUSTOMER).ToListAsync();
                 }
             
-                // same for residentialcustomer and residentialcustomer_agent
+                // Le préposé aux clients résidentiels peut voir les clients résidentiels 
                 else if (user.Role.Equals(RolesConstants.RESIDENTIALCUSTOMER_AGENT))
                 {
                     userRole = "Clients résidentiel";
                     users = await _userManager.Users.Where(u => u.Role == RolesConstants.RESIDENTIALCUSTOMER).ToListAsync();
                 }
                 
-                // the admin has access to all the students
+                // L'administrateur à accés à tout 
                 else if (user.Role.Equals(RolesConstants.ADMIN))
                 {
                     userRole = "Clients";
@@ -77,7 +76,7 @@ namespace WebSecurity.Controllers
                 });
             }
             
-            // if the user isn't logged in, redirect him to the login page (Index)
+            // Si l'utilisateur n'est pas loggé il est redirigé vers la page de d'acceuil
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
